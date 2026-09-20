@@ -4,8 +4,8 @@
     $test_connection = db_connect();
 
     if ($test_connection) {
-        echo "DB Connected successfully!";
+        echo json_encode(["success" => true, "message" => "DB Connected successfully!"]);
     } else {
-        echo "DB Connection failed!";
+        echo json_encode(["success" => false, "error" => db_connect()]);
     }
 ?>

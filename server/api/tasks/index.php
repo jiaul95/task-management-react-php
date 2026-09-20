@@ -2,31 +2,56 @@
 
 require_once __DIR__ . '/../../includes/db.php';
 
-$conn = db_connect();
-
 header('Content-Type: application/json');
 
-$status = isset($_GET['status']) ? $_GET['status'] : '';
+$conn = db_connect();
 
-$sql = "SELECT id, title, description, status, priority, due_date, user_id
-        FROM tasks";
+$status = $_GET['status'] ?? null;
 
-if ($status !== '') {
-    $sql .= " WHERE status = ?";
+$page = $_GET['page'] ?? 1;
+$limit = $_GET['limit'] ?? 10;
+
+if ($page < 1) {
+    $page = 1;
 }
 
-$sql .= " ORDER BY id DESC";
+if ($limit < 1 || $limit > 100) {
+    $limit = 10;
+}
 
-if ($status !== '') {
+$offset = ($page - 1) * $limit;
+
+
+
+if (!empty($status)) {
+
+    $sql = "SELECT id, title, description, status, priority, due_date, user_id
+            FROM tasks
+            WHERE status = ? AND deleted_at IS NULL
+            ORDER BY id DESC LIMIT ? OFFSET ?";
+
     $stmt = mysqli_prepare($conn, $sql);
 
-    mysqli_stmt_bind_param($stmt, "s", $status);
+    mysqli_stmt_bind_param($stmt, "sii", $status, $limit, $offset);
 
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
+
 } else {
-    $result = mysqli_query($conn, $sql);
+
+    $sql = "SELECT id, title, description, status, priority, due_date, user_id
+            FROM tasks WHERE deleted_at IS NULL
+            ORDER BY id DESC
+            LIMIT ? OFFSET ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+
+    mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
 }
 
 if (!$result) {
@@ -48,7 +73,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 echo json_encode([
     'success' => true,
-    'data' => $tasks
+    'data' => $tasks,
+    'page' => $page,
+    'limit' => $limit
 ]);
 
 mysqli_close($conn);
