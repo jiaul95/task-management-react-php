@@ -1,12 +1,15 @@
 function TaskList({ tasks, onEdit, onDelete }) {
 
-
     return (
-
         <div>
+
+            {tasks.length === 0 && (
+                <p>No tasks found.</p>
+            )}
 
             {tasks.map((task) => (
                 <div key={task.id} className="task-item">
+
                     <h3>{task.title}</h3>
 
                     <p>{task.description}</p>
@@ -30,13 +33,12 @@ function TaskList({ tasks, onEdit, onDelete }) {
                     <button onClick={() => onDelete(task.id)}>
                         Delete
                     </button>
+
                 </div>
             ))}
 
         </div>
-
-    )
-
+    );
 }
 
 export default TaskList;

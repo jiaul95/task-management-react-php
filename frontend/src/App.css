@@ -1,15 +1,314 @@
-.container {
-    width: 80%;
-    margin: 30px auto;
+* {
+  box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+.container {
+  width: 92%;
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+.container h1 {
+  margin-bottom: 25px;
+}
+
+/* Main layout */
+
+.task-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+/* Left side */
+
+.form-section {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+/* Remove the extra card appearance from TaskForm */
+
+.task-form {
+  margin: 0;
+}
+
+.task-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+}
+
+.task-form div {
+  margin-bottom: 15px;
+}
+
+.task-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.task-form textarea {
+  height: 90px;
+  resize: vertical;
+}
+
+.task-form input:focus,
+.task-form textarea:focus,
+.task-form select:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.task-form button {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.task-form button:hover {
+  background: #222;
+}
+
+.task-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Right side */
+
+.list-section {
+  min-width: 0;
+}
+
+.task-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.task-list-header h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.task-list-header select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+/* Task card */
 
 .task-item {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 18px;
+  margin-bottom: 12px;
 }
 
-button {
-    margin-right: 10px;
-    padding: 8px 12px;
+.task-item h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.task-item p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.task-item button {
+  margin-top: 12px;
+  margin-right: 7px;
+  padding: 7px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.task-item button:hover {
+  background: #f1f1f1;
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 7px 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #eee;
+}
+
+.pagination button:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 14px;
+}
+
+/* Messages */
+
+.error {
+  color: #c62828;
+}
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+  .task-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section {
+    width: 100%;
+  }
+}
+
+
+
+/* Login */
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 25px;
+}
+
+.login-form h1 {
+  margin: 0 0 25px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.login-form div {
+  margin-bottom: 16px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background: #222;
+}
+
+.login-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-form .error {
+  margin-bottom: 15px;
+  color: #c62828;
+  font-size: 14px;
+}
+
+
+.auth-link {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.link-button {
+  width: auto !important;
+  padding: 0 !important;
+  margin-left: 5px;
+  background: none !important;
+  color: #333 !important;
+  text-decoration: underline;
+  cursor: pointer;
 }
