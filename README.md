@@ -5,26 +5,42 @@ A simple full-stack Task Management application built using PHP, MySQL and React
 The application allows users to register and log in, create and manage their
 own tasks, while administrators can manage tasks created by all users.
 
+This project was developed as part of a PHP / MySQL / React practical
+assessment.
+
+---
+
 ## Tech Stack
 
 ### Backend
+
 - PHP 8.2
 - MySQL
-- REST APIs
 - MySQLi
+- REST APIs
 - PHP Sessions
 
 ### Frontend
+
 - React
 - JavaScript
 - Vite
 - CSS
 
+### Development Environment
+
+- XAMPP / Apache
+- MySQL
+- Node.js
+- npm
+
+---
+
 ## Main Features
 
 ### Task Management
 
-- Create a task
+- Create tasks
 - View tasks
 - Edit tasks
 - Delete tasks
@@ -39,14 +55,15 @@ own tasks, while administrators can manage tasks created by all users.
 
 - User registration
 - User login
-- Password hashing
+- Secure password hashing
+- Password verification
 - Session-based authentication
 - Logout
 - Session check
 
 ### Authorization
 
-The application has two roles:
+The application supports two roles:
 
 - Admin
 - User
@@ -55,26 +72,32 @@ A normal user can only view and manage their own tasks.
 
 An admin can view and manage tasks created by all users.
 
-The API returns `401 Unauthorized` when authentication is required and
-`403 Forbidden` when the logged-in user does not have permission to perform
-an operation.
+The API returns:
 
-## Project Structure
+- `401 Unauthorized` when authentication is required
+- `403 Forbidden` when the logged-in user does not have permission
+
+---
+
+# Project Structure
 
 ```text
 task_management_php_react_mysql/
 │
 ├── frontend/
 │   ├── public/
+│   │
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── Login.jsx
 │   │   │   ├── Register.jsx
 │   │   │   ├── TaskForm.jsx
 │   │   │   └── TaskList.jsx
+│   │   │
 │   │   ├── App.jsx
 │   │   ├── App.css
 │   │   └── main.jsx
+│   │
 │   ├── .env
 │   ├── .env.example
 │   ├── .gitignore
@@ -82,6 +105,7 @@ task_management_php_react_mysql/
 │   └── vite.config.js
 │
 ├── server/
+│   │
 │   ├── api/
 │   │   ├── auth/
 │   │   │   ├── register.php
@@ -105,4 +129,5 @@ task_management_php_react_mysql/
 │   │
 │   └── test_connection.php
 │
+├── .gitignore
 └── README.md
