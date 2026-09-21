@@ -26,6 +26,10 @@ function TaskList({ tasks, onEdit, onDelete }) {
                         Due Date: {task.due_date || 'No due date'}
                     </p>
 
+                    <p>
+                        Owner: {task.owner_name}
+                    </p>
+
                     <button onClick={() => onEdit(task)}>
                         Edit
                     </button>
